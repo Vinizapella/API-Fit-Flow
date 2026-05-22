@@ -64,9 +64,9 @@ public class ModalidadeService {
     public MensagemDTO deletarModalidade(
         Long id
     ){
-        Modalidade modalidade = modalidadeRepositorio.findById(id)
+        modalidadeRepositorio.findById(id)
         .orElseThrow(()->new RuntimeException("Não existe modalidade com este ID"));
-        modalidadeRepositorio.delete(modalidade);
+        modali
         return new MensagemDTO("Modalidade apagada com sucesso");
     }
     

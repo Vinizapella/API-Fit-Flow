@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.weg.fit.flow.dto.MensagemDTO;
 import com.weg.fit.flow.dto.modalidade.ModalidadeCreateDTO;
 import com.weg.fit.flow.dto.modalidade.ModalidadeResponseDTO;
-import com.weg.fit.flow.dto.modalidade.ModalidadeUpdateDTO;
 import com.weg.fit.flow.mapper.ModalidadeMapper;
 import com.weg.fit.flow.model.Modalidade;
 import com.weg.fit.flow.repositorio.ModalidadeRepositorio;
@@ -49,24 +48,12 @@ public class ModalidadeService {
         .map(modalidadeMapper::toResponse)
         .toList();
     }
-
-    public ModalidadeResponseDTO atualizarModalidade(
-        ModalidadeUpdateDTO modalidadeUpdateDTO,
-        Long id
-    ){
-        Modalidade modalidade = modalidadeRepositorio.findById(id)
-        .orElseThrow(()->new RuntimeException("Não existe modalidade com este ID"));
-        modalidade.setPrecoMensal(modalidadeUpdateDTO.precoMensal());
-        modalidadeRepositorio.save(modalidade);
-        return modalidadeMapper.toResponse(modalidade);
-    }
     
     public MensagemDTO deletarModalidade(
         Long id
     ){
-        Modalidade modalidade = modalidadeRepositorio.findById(id)
+        modalidadeRepositorio.findById(id)
         .orElseThrow(()->new RuntimeException("Não existe modalidade com este ID"));
-        modalidadeRepositorio.delete(modalidade);
         return new MensagemDTO("Modalidade apagada com sucesso");
     }
     

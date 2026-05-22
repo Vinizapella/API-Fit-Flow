@@ -54,19 +54,14 @@ public class ModalidadeService {
         ModalidadeUpdateDTO modalidadeUpdateDTO,
         Long id
     ){
-        Modalidade modalidade = modalidadeRepositorio.findById(id)
-        .orElseThrow(()->new RuntimeException("Não existe modalidade com este ID"));
-        modalidade.setPrecoMensal(modalidadeUpdateDTO.precoMensal());
-        modalidadeRepositorio.save(modalidade);
-        return modalidadeMapper.toResponse(modalidade);
+        
     }
     
     public MensagemDTO deletarModalidade(
         Long id
     ){
-        Modalidade modalidade = modalidadeRepositorio.findById(id)
+        modalidadeRepositorio.findById(id)
         .orElseThrow(()->new RuntimeException("Não existe modalidade com este ID"));
-        modalidadeRepositorio.delete(modalidade);
         return new MensagemDTO("Modalidade apagada com sucesso");
     }
     
