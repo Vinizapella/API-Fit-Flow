@@ -1,0 +1,12 @@
+package com.weg.fit.flow.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name= "aluno")
+public class Aluno {
+
+    private Long id
+
+}
